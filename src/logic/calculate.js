@@ -70,6 +70,50 @@ function calcFourOfKindScore(counts, faces) {
     }
 }
 
+function calcFullhouseScore(counts) {
+    const [a, b] = Object.values(counts).sort();
+    if (a === 2 && b === 3) {
+        return 25;
+    }
+    return 0;
+}
+
+function calcSmallStraightScore(counts) {
+    let maxRun = 0
+    let currentRun = 0
+
+    for (let value = 0; value <= 5; value++) {
+        if (counts[value] >= 1) {
+            currentRun++
+            maxRun = Math.max(maxRun, currentRun)
+        } else {
+            currentRun = 0
+        }
+    }
+    if (maxRun >= 4) {
+        return 30
+    }
+    return 0;
+}
+
+function calcLargeStraightScore(counts) {
+    let maxRun = 0
+    let currentRun = 0
+
+    for (let value = 0; value <= 5; value++) {
+        if (counts[value] >= 1) {
+            currentRun++
+            maxRun = Math.max(maxRun, currentRun)
+        } else {
+            currentRun = 0
+        }
+    }
+    if (maxRun === 5) {
+        return 40;
+    }
+    return 0;
+}
+
 function calcChanceScore(faces) {
     const sum = faces.reduce(
         (accumulator, currentValue) => accumulator + currentValue,
@@ -78,8 +122,16 @@ function calcChanceScore(faces) {
     return sum + 5;
 }
 
-const faces = [0, 1, 5, 5, 5]
+function calcYatzy(counts) {
+    const isYazty = Object.values(counts).some(count => count === 5);
+    if (isYazty) {
+        return 50;
+    }
+    return 0;
+}
+
+const faces = [3, 3, 3, 3, 3];
 const counts = countDice(faces);
-const onesScore = calcSixesScore(counts);
+const onesScore = calcYatzy(counts);
 console.log(counts);
 console.log(onesScore);
