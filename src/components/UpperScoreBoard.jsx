@@ -1,25 +1,21 @@
-function UpperScoreBoard() {
-    const rows = [
-        { key: "ones", label: "Ones" },
-        { key: "twos", label: "Twos" },
-        { key: "threes", label: "Threes" },
-        { key: "fours", label: "Fours" },
-        { key: "fives", label: "Fives" },
-        { key: "sixes", label: "Sixes" }];
+function UpperScoreBoard({ upperScores, upperPossibleScores }) {
+    const item = upperScores.map((row, i) => {
+        let score;
+        if (row.score) {
+            score = row.score;
+        } else {
+            score = upperPossibleScores[i].score;
+        };
 
-    return (
-        <>
-            {rows.map(row => (
-                <tr key={row.key}>
-                    <td>{row.label}</td>
-                    <td>0</td>
-                    <td>
-                        <button type="button">Select</button>
-                    </td>
-                </tr>
-            ))}
-        </>
-    );
+        return (<tr key={row.key}>
+            <td>
+                <button type="button">Select</button>
+            </td>
+            <td>{row.key}</td>
+            <td>{score}</td>
+        </tr>);
+    });
+    return item;
 }
 
 export default UpperScoreBoard

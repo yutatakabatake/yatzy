@@ -9,40 +9,40 @@ function App() {
   const [isHolds, setIsHolds] = useState(Array(5).fill(false));
   const [faces, setFaces] = useState(Array(5).fill(0));
   const [count, setCount] = useState(3);
-  const [upperScores, setUpperScores] = useState({
-    ones: null,
-    twos: null,
-    threes: null,
-    fours: null,
-    fives: null,
-    sixes: null
-  });
-  const [lowerScores, setLowerScores] = useState({
-    three: null,
-    four: null,
-    fullHouse: null,
-    smallStraight: null,
-    largeStraight: null,
-    chance: null,
-    yatzy: null
-  });
-  const [upperPossibleScores, setUpperPossibleScores] = useState({
-    ones: null,
-    twos: null,
-    threes: null,
-    fours: null,
-    fives: null,
-    sixes: null
-  });
-  const [lowerPossibleScores, setLowerPossibleScores] = useState({
-    three: null,
-    four: null,
-    fullHouse: null,
-    smallStraight: null,
-    largeStraight: null,
-    chance: null,
-    yatzy: null
-  });
+  const [upperScores, setUpperScores] = useState([
+    { key: "Ones", score: null },
+    { key: "Twos", score: null },
+    { key: "Threes", score: null },
+    { key: "Fours", score: null },
+    { key: "Fives", score: null },
+    { key: "Sixes", score: null },
+  ]);
+  const [lowerScores, setLowerScores] = useState([
+    { key: "Three", score: null },
+    { key: "Four", score: null },
+    { key: "HullHouse", score: null },
+    { key: "SmallStraight", score: null },
+    { key: "LargeStraight", score: null },
+    { key: "Chance", score: null },
+    { key: "Yatzy", score: null },
+  ]);
+  const [upperPossibleScores, setUpperPossibleScores] = useState([
+    { key: "Ones", score: 0 },
+    { key: "Twos", score: 0 },
+    { key: "Threes", score: 0 },
+    { key: "Fours", score: 0 },
+    { key: "Fives", score: 0 },
+    { key: "Sixes", score: 0 },
+  ]);
+  const [lowerPossibleScores, setLowerPossibleScores] = useState([
+    { key: "Three", score: 0 },
+    { key: "Four", score: 0 },
+    { key: "HullHouse", score: 0 },
+    { key: "SmallStraight", score: 0 },
+    { key: "LargeStraight", score: 0 },
+    { key: "Chance", score: 0 },
+    { key: "Yatzy", score: 0 },
+  ]);
 
   function handleHold(i) {
     const newIsHolds = [...isHolds.slice(0, i), !isHolds[i], ...isHolds.slice(i + 1, isHolds.length)];
@@ -65,10 +65,10 @@ function App() {
     setCount(count - 1);
 
     const newUpperPossibleScores = calcUpperScores(newFaces);
-    console.log(newUpperPossibleScores);
+    setUpperPossibleScores(newUpperPossibleScores);
 
     const newLowerPossibleScores = calcLowerScores(newFaces);
-    console.log(newLowerPossibleScores);
+    setLowerPossibleScores(newLowerPossibleScores);
   }
 
   return (
@@ -85,7 +85,10 @@ function App() {
           <Dicearea faces={faces} isHolds={isHolds} handleHold={handleHold} />
           <RollButton count={count} handleRoll={handleRoll} />
         </div>
-        <ScoreBoard />
+        <ScoreBoard upperScores={upperScores}
+          lowerScores={lowerScores}
+          upperPossibleScores={upperPossibleScores}
+          lowerPossibleScores={lowerPossibleScores} />
       </div>
     </div>
 

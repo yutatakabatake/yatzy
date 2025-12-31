@@ -1,27 +1,21 @@
-function LowerBoardScore() {
-    const rows = [
-        { key: "three", label: "Three of a kind" },
-        { key: "four", label: "Four of a kind" },
-        { key: "fullHouse", label: "Full house" },
-        { key: "smallStraight", label: "Small straight" },
-        { key: "largeStraight", label: "Large straight" },
-        { key: "chance", label: "Chance" },
-        { key: "yatzy", label: "Yatzy" }
+function LowerBoardScore({ lowerScores, lowerPossibleScores }) {
+    const item = lowerScores.map((row, i) => {
+        let score;
+        if (row.score) {
+            score = row.score;
+        } else {
+            score = lowerPossibleScores[i].score;
+        };
 
-    ];
-    return (
-        <>
-            {rows.map(row => (
-                <tr key={row.key}>
-                    <td>{row.label}</td>
-                    <td>0</td>
-                    <td>
-                        <button type="button">Select</button>
-                    </td>
-                </tr>
-            ))}
-        </>
-    );
+        return (<tr key={row.key}>
+            <td>
+                <button type="button">Select</button>
+            </td>
+            <td>{row.key}</td>
+            <td>{score}</td>
+        </tr>);
+    });
+    return item;
 }
 
 export default LowerBoardScore
