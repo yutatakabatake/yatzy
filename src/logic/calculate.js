@@ -27,7 +27,7 @@ function calcThreesScore(counts) {
     return 0;
 }
 
-function calcSFoursScore(counts) {
+function calcFoursScore(counts) {
     if (counts[3]) {
         return counts[3] * 4;
     }
@@ -130,8 +130,23 @@ function calcYatzy(counts) {
     return 0;
 }
 
-const faces = [3, 3, 3, 3, 3];
-const counts = countDice(faces);
-const onesScore = calcYatzy(counts);
-console.log(counts);
-console.log(onesScore);
+export function calcScores(faces) {
+    const counts = countDice(faces);
+    const scores = {
+        ones: calcOnesScore(counts),
+        twos: calcTwosScore(counts),
+        threes: calcThreesScore(counts),
+        fours: calcFoursScore(counts),
+        fives: calcFivesScore(counts),
+        sixes: calcSixesScore(counts),
+        bonus: null,
+        three: calcThreeOfKindScore(counts, faces),
+        four: calcFourOfKindScore(counts, faces),
+        fullHouse: calcFullhouseScore(counts),
+        smallStraight: calcSmallStraightScore(counts),
+        largeStraight: calcLargeStraightScore(counts),
+        chance: calcChanceScore(faces),
+        yatzy: calcYatzy(counts)
+    };
+    return scores;
+}
