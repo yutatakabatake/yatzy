@@ -1,6 +1,18 @@
 import UpperScoreBoard from "./ScoreBoardPart";
 
 function ScoreBoard({ upperScores, lowerScores, upperPossibleScores, lowerPossibleScores, handleSelect }) {
+    const sum = upperScores.map(row => row.score === null ? 0 : row.score)
+        .reduce(
+            (accumulator, currentValue) => accumulator + currentValue,
+            0
+        );
+    const bonus = (sum >= 63) ? 35 : 0;
+    const total = lowerScores.map(row => row.score === null ? 0 : row.score)
+        .reduce(
+            (accumulator, currentValue) => accumulator + currentValue,
+            0
+        ) + sum + bonus;
+
     return (
         <table border="1" width="100%" style={{ marginTop: "1rem" }}>
             <tbody>
@@ -8,21 +20,21 @@ function ScoreBoard({ upperScores, lowerScores, upperPossibleScores, lowerPossib
                 <tr key="sum">
                     <td></td>
                     <td>Sum</td>
-                    <td>0</td>
+                    <td>{sum}</td>
                 </tr>
                 <tr key="bonus">
                     <td></td>
                     <td>Bonus</td>
-                    <td>0</td>
+                    <td>{bonus}</td>
                 </tr>
                 <UpperScoreBoard scores={lowerScores} possibleScores={lowerPossibleScores} handleSelect={handleSelect} />
                 <tr key="total">
                     <td></td>
                     <td>Total</td>
-                    <td>0</td>
+                    <td>{total}</td>
                 </tr>
             </tbody>
-        </table>
+        </table >
     );
 }
 
