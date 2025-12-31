@@ -87,7 +87,7 @@ function App() {
       const newLowerScores = lowerScores.map((row, i) => (
         row.key === key ? { ...row, score: lowerPossibleScores[i].score } : row
       ));
-      setUpperScores(newLowerScores);
+      setLowerScores(newLowerScores);
     }
     initRound();
   }
