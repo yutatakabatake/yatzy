@@ -89,6 +89,13 @@ function App() {
       ));
       setUpperScores(newLowerScores);
     }
+    initRound();
+  }
+
+  function initRound() {
+    setIsHolds(Array(5).fill(false));
+    setFaces(Array(5).fill(0));
+    setCount(3);
   }
 
   return (
