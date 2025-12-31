@@ -130,7 +130,7 @@ function calcYatzy(counts) {
     return 0;
 }
 
-export function calcScores(faces) {
+export function calcUpperScores(faces) {
     const counts = countDice(faces);
     const scores = {
         ones: calcOnesScore(counts),
@@ -138,8 +138,14 @@ export function calcScores(faces) {
         threes: calcThreesScore(counts),
         fours: calcFoursScore(counts),
         fives: calcFivesScore(counts),
-        sixes: calcSixesScore(counts),
-        bonus: null,
+        sixes: calcSixesScore(counts)
+    };
+    return scores;
+}
+
+export function calcLowerScores(faces) {
+    const counts = countDice(faces);
+    const scores = {
         three: calcThreeOfKindScore(counts, faces),
         four: calcFourOfKindScore(counts, faces),
         fullHouse: calcFullhouseScore(counts),
