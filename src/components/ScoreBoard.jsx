@@ -1,10 +1,10 @@
 import UpperScoreBoard from "./ScoreBoardPart";
 
-function ScoreBoard({ upperScores, lowerScores, upperPossibleScores, lowerPossibleScores }) {
+function ScoreBoard({ upperScores, lowerScores, upperPossibleScores, lowerPossibleScores, handleSelect }) {
     return (
         <table border="1" width="100%" style={{ marginTop: "1rem" }}>
             <tbody>
-                <UpperScoreBoard scores={upperScores} possibleScores={upperPossibleScores} />
+                <UpperScoreBoard scores={upperScores} possibleScores={upperPossibleScores} handleSelect={handleSelect} />
                 <tr key="sum">
                     <td></td>
                     <td>Sum</td>
@@ -15,7 +15,7 @@ function ScoreBoard({ upperScores, lowerScores, upperPossibleScores, lowerPossib
                     <td>Bonus</td>
                     <td>0</td>
                 </tr>
-                <UpperScoreBoard scores={lowerScores} possibleScores={lowerPossibleScores} />
+                <UpperScoreBoard scores={lowerScores} possibleScores={lowerPossibleScores} handleSelect={handleSelect} />
                 <tr key="total">
                     <td></td>
                     <td>Total</td>

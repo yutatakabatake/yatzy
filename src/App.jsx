@@ -71,6 +71,26 @@ function App() {
     setLowerPossibleScores(newLowerPossibleScores);
   }
 
+  function handleSelect(key) {
+    if (key === "Ones" ||
+      key === "Twos" ||
+      key === "Threes" ||
+      key === "Fours" ||
+      key === "Fives" ||
+      key === "Sixes"
+    ) {
+      const newUpperScores = upperScores.map((row, i) => (
+        row.key === key ? { ...row, score: upperPossibleScores[i].score } : row
+      ));
+      setUpperScores(newUpperScores);
+    } else {
+      const newLowerScores = lowerScores.map((row, i) => (
+        row.key === key ? { ...row, score: lowerPossibleScores[i].score } : row
+      ));
+      setUpperScores(newLowerScores);
+    }
+  }
+
   return (
     <div style={{ padding: "2rem" }}>
       <h1>Yatzy</h1>
@@ -88,7 +108,8 @@ function App() {
         <ScoreBoard upperScores={upperScores}
           lowerScores={lowerScores}
           upperPossibleScores={upperPossibleScores}
-          lowerPossibleScores={lowerPossibleScores} />
+          lowerPossibleScores={lowerPossibleScores}
+          handleSelect={handleSelect} />
       </div>
     </div>
 
