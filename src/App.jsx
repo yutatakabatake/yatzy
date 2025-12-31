@@ -96,6 +96,23 @@ function App() {
     setIsHolds(Array(5).fill(false));
     setFaces(Array(5).fill(0));
     setCount(3);
+    setUpperPossibleScores([
+      { key: "Ones", score: 0 },
+      { key: "Twos", score: 0 },
+      { key: "Threes", score: 0 },
+      { key: "Fours", score: 0 },
+      { key: "Fives", score: 0 },
+      { key: "Sixes", score: 0 },
+    ]);
+    setLowerPossibleScores([
+      { key: "Three", score: 0 },
+      { key: "Four", score: 0 },
+      { key: "HullHouse", score: 0 },
+      { key: "SmallStraight", score: 0 },
+      { key: "LargeStraight", score: 0 },
+      { key: "Chance", score: 0 },
+      { key: "Yatzy", score: 0 },
+    ]);
   }
 
   return (
