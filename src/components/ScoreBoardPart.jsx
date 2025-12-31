@@ -1,11 +1,11 @@
-function UpperScoreBoard({ upperScores, upperPossibleScores }) {
-    const item = upperScores.map((row, i) => {
+function UpperScoreBoard({ scores, possibleScores }) {
+    const item = scores.map((row, i) => {
         const isDecide = row.score !== null;
         let score;
         if (isDecide) {
             score = row.score;
         } else {
-            score = upperPossibleScores[i].score;
+            score = possibleScores[i].score;
         };
 
         return (<tr key={row.key}>
