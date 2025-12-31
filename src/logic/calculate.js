@@ -13,14 +13,14 @@ function calcOnesScore(counts) {
     return 0;
 }
 
-function calcSecondsScore(counts) {
+function calcTwosScore(counts) {
     if (counts[1]) {
         return counts[1] * 2;
     }
     return 0;
 }
 
-function calcThirdsScore(counts) {
+function calcThreesScore(counts) {
     if (counts[2]) {
         return counts[2] * 3;
     }
