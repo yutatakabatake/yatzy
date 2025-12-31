@@ -11,7 +11,12 @@ function UpperScoreBoard({ scores, possibleScores, handleSelect }) {
         return (
             <tr key={row.key}>
                 <td>
-                    <button type="button" onClick={() => handleSelect(row.key)}>Select</button>
+                    <button type="button"
+                        onClick={() => handleSelect(row.key)}
+                        disabled={isDecide}
+                    >
+                        Select
+                    </button>
                 </td>
                 <td>{row.key}</td>
                 <td
@@ -20,7 +25,7 @@ function UpperScoreBoard({ scores, possibleScores, handleSelect }) {
                     }}>
                     {score}
                 </td>
-            </tr>
+            </tr >
         );
     });
     return item;
