@@ -1,76 +1,38 @@
-import React from 'react'
-
 function ScoreBoard() {
+    const rows = [
+        { key: "ones", label: "One" },
+        { key: "twos", label: "Two" },
+        { key: "threes", label: "Three" },
+        { key: "fours", label: "Four" },
+        { key: "fives", label: "Five" },
+        { key: "sixes", label: "Six" },
+
+        { key: "sum", label: "Sum" },
+        { key: "bonus", label: "Bonus" },
+
+        { key: "three", label: "Three of a kind" },
+        { key: "four", label: "Four of a kind" },
+        { key: "fullHouse", label: "Full house" },
+        { key: "smallStraight", label: "Small straight" },
+        { key: "largeStraight", label: "Large straight" },
+        { key: "chance", label: "Chance" },
+        { key: "yatzy", label: "Yatzy" },
+
+        { key: "total", label: "Total" },
+    ];
+
     return (
         <table border="1" width="100%" style={{ marginTop: "1rem" }}>
             <tbody>
-                <tr>
-                    <td>Ones</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <td>Twos</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <td>Threes</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <td>Fours</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <td>Fives</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <td>Sixes</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <td>Sum</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <td>Bonus</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <td>Three of kind</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <td>Four of kind</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <td>Full house</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <td>Small straight</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <td>Large straight</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <td>Chance</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <td>Yatzy</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <td>Total</td>
-                    <td>0</td>
-                </tr>
+                {rows.map(row => (
+                    <tr key={row.key}>
+                        <td>{row.label}</td>
+                        <td>0</td>
+                    </tr>
+                ))}
             </tbody>
         </table>
-    )
+    );
 }
 
-export default ScoreBoard
+export default ScoreBoard;
