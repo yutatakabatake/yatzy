@@ -1,11 +1,11 @@
 function ScoreBoard() {
     const rows = [
-        { key: "ones", label: "One" },
-        { key: "twos", label: "Two" },
-        { key: "threes", label: "Three" },
-        { key: "fours", label: "Four" },
-        { key: "fives", label: "Five" },
-        { key: "sixes", label: "Six" },
+        { key: "ones", label: "Ones" },
+        { key: "twos", label: "Twos" },
+        { key: "threes", label: "Threes" },
+        { key: "fours", label: "Fours" },
+        { key: "fives", label: "Fives" },
+        { key: "sixes", label: "Sixes" },
 
         { key: "sum", label: "Sum" },
         { key: "bonus", label: "Bonus" },
