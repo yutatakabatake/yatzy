@@ -7,6 +7,7 @@ function ScoreBoard({ upperScores, lowerScores, upperPossibleScores, lowerPossib
             0
         );
     const bonus = (sum >= 63) ? 35 : 0;
+    const bonusDescription = (sum >= 63) ? "Get!" : `${sum}/63`;
     const total = lowerScores.map(row => row.score === null ? 0 : row.score)
         .reduce(
             (accumulator, currentValue) => accumulator + currentValue,
@@ -23,7 +24,7 @@ function ScoreBoard({ upperScores, lowerScores, upperPossibleScores, lowerPossib
                     <td>{sum}</td>
                 </tr>
                 <tr key="bonus">
-                    <td></td>
+                    <td>{bonusDescription}</td>
                     <td>Bonus</td>
                     <td>{bonus}</td>
                 </tr>
