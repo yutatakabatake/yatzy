@@ -28,6 +28,9 @@ function ScoreBoard() {
                     <tr key={row.key}>
                         <td>{row.label}</td>
                         <td>0</td>
+                        <td>
+                            <button type="button">Select</button>
+                        </td>
                     </tr>
                 ))}
             </tbody>
