@@ -130,29 +130,22 @@ function calcYatzy(counts) {
     return 0;
 }
 
-export function calcUpperScores(faces) {
+export function calcScores(faces) {
     const counts = countDice(faces);
     const scores = [
-        { key: "ones", score: calcOnesScore(counts) },
-        { key: "twos", score: calcTwosScore(counts) },
-        { key: "threes", score: calcThreesScore(counts) },
-        { key: "fours", score: calcFoursScore(counts) },
-        { key: "fives", score: calcFivesScore(counts) },
-        { key: "sixes", score: calcSixesScore(counts) }
-    ];
-    return scores;
-}
-
-export function calcLowerScores(faces) {
-    const counts = countDice(faces);
-    const scores = [
-        { key: "three", score: calcThreeOfKindScore(counts, faces) },
-        { key: "four", score: calcFourOfKindScore(counts, faces) },
-        { key: "hullHouse", score: calcFullhouseScore(counts) },
-        { key: "smallStraight", score: calcSmallStraightScore(counts) },
-        { key: "largeStraight", score: calcLargeStraightScore(counts) },
-        { key: "chance", score: calcChanceScore(faces) },
-        { key: "yatzy", score: calcYatzy(counts) }
+        { key: "Ones", score: calcOnesScore(counts) },
+        { key: "Twos", score: calcTwosScore(counts) },
+        { key: "Threes", score: calcThreesScore(counts) },
+        { key: "Fours", score: calcFoursScore(counts) },
+        { key: "Fives", score: calcFivesScore(counts) },
+        { key: "Sixes", score: calcSixesScore(counts) },
+        { key: "Three", score: calcThreeOfKindScore(counts, faces) },
+        { key: "Four", score: calcFourOfKindScore(counts, faces) },
+        { key: "HullHouse", score: calcFullhouseScore(counts) },
+        { key: "SmallStraight", score: calcSmallStraightScore(counts) },
+        { key: "LargeStraight", score: calcLargeStraightScore(counts) },
+        { key: "Chance", score: calcChanceScore(faces) },
+        { key: "Yatzy", score: calcYatzy(counts) }
     ];
     return scores;
 }
