@@ -1,0 +1,8 @@
+.dice {
+    width: 320px;
+    height: 64px;
+    font-size: 2rem;
+    margin: 1rem 0;
+    display: flex;
+    justify-content: center;
+}

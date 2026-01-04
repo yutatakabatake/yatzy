@@ -1,9 +1,12 @@
-import { useState } from 'react'
 import Dice from './Dice'
+import './DiceArea.css'
 
-function Dicearea({ faces, isHolds, handleHold }) {
+function Dicearea({ faces, isHolds, handleHold, isInit }) {
+    if (isInit) {
+        return <div className='dice'>ROLL!</div>
+    }
     return (
-        <div style={{ display: "flex", justifyContent: "center", margin: "1rem 0" }}>
+        <div className='dice'>
             <Dice face={faces[0]} isHold={isHolds[0]} handleClick={() => handleHold(0)} />
             <Dice face={faces[1]} isHold={isHolds[1]} handleClick={() => handleHold(1)} />
             <Dice face={faces[2]} isHold={isHolds[2]} handleClick={() => handleHold(2)} />

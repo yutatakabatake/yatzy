@@ -126,7 +126,7 @@ function App() {
           gap: "2rem",
         }}>
         <div>
-          <Dicearea faces={faces} isHolds={isHolds} handleHold={handleHold} />
+          <Dicearea faces={faces} isHolds={isHolds} handleHold={handleHold} isInit={count === 3} />
           <RollButton count={count} handleRoll={handleRoll} />
         </div>
         <ScoreBoard upperScores={upperScores}
