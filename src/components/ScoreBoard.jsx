@@ -1,6 +1,10 @@
-import UpperScoreBoard from "./ScoreBoardPart";
+import ScoreBoardPart from "./ScoreBoardPart";
 
-function ScoreBoard({ upperScores, lowerScores, upperPossibleScores, lowerPossibleScores, handleSelect }) {
+function ScoreBoard({ scores, possibleScores, handleSelect, isActive }) {
+    const upperScores = scores.slice(0, 6);
+    const lowerScores = scores.slice(6);
+    const upperPossibleScores = possibleScores.slice(0, 6);
+    const lowerPossibleScores = possibleScores.slice(6);
     const sum = upperScores.map(row => row.score === null ? 0 : row.score)
         .reduce(
             (accumulator, currentValue) => accumulator + currentValue,
@@ -17,7 +21,7 @@ function ScoreBoard({ upperScores, lowerScores, upperPossibleScores, lowerPossib
     return (
         <table border="1" width="100%" style={{ marginTop: "1rem" }}>
             <tbody>
-                <UpperScoreBoard scores={upperScores} possibleScores={upperPossibleScores} handleSelect={handleSelect} />
+                <ScoreBoardPart scores={upperScores} possibleScores={upperPossibleScores} handleSelect={handleSelect} isActive={isActive} />
                 <tr key="sum">
                     <td></td>
                     <td>Sum</td>
@@ -28,7 +32,7 @@ function ScoreBoard({ upperScores, lowerScores, upperPossibleScores, lowerPossib
                     <td>Bonus</td>
                     <td>{bonus}</td>
                 </tr>
-                <UpperScoreBoard scores={lowerScores} possibleScores={lowerPossibleScores} handleSelect={handleSelect} />
+                <ScoreBoardPart scores={lowerScores} possibleScores={lowerPossibleScores} handleSelect={handleSelect} isActive={isActive} />
                 <tr key="total">
                     <td></td>
                     <td>Total</td>

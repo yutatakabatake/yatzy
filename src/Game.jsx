@@ -9,22 +9,9 @@ function Game({ players }) {
   const [isHolds, setIsHolds] = useState(Array(5).fill(false));
   const [faces, setFaces] = useState(Array(5).fill(0));
   const [count, setCount] = useState(3);
+  const [currentPlayer, setCurrentPlayer] = useState(0);
   const [scores, setScores] = useState(createInitialScores(players));
-  const [possibleScores, setPossibleScores] = useState([
-    { key: "Ones", score: 0 },
-    { key: "Twos", score: 0 },
-    { key: "Threes", score: 0 },
-    { key: "Fours", score: 0 },
-    { key: "Fives", score: 0 },
-    { key: "Sixes", score: 0 },
-    { key: "Three", score: 0 },
-    { key: "Four", score: 0 },
-    { key: "HullHouse", score: 0 },
-    { key: "SmallStraight", score: 0 },
-    { key: "LargeStraight", score: 0 },
-    { key: "Chance", score: 0 },
-    { key: "Yatzy", score: 0 },
-  ]);
+  const [possibleScores, setPossibleScores] = useState(createInitialPossibleScores(players));
 
   function handleHold(i) {
     const newIsHolds = [...isHolds.slice(0, i), !isHolds[i], ...isHolds.slice(i + 1, isHolds.length)];
@@ -47,7 +34,11 @@ function Game({ players }) {
     setCount(count - 1);
 
     const newPossibleScores = calcScores(newFaces);
-    setPossibleScores(newPossibleScores);
+    setPossibleScores(
+      possibleScores.map((possiblePlayerScores, index) => (
+        index === currentPlayer ? newPossibleScores : possiblePlayerScores
+      ))
+    );
   }
 
   function handleSelect(key) {
@@ -62,26 +53,14 @@ function Game({ players }) {
     setIsHolds(Array(5).fill(false));
     setFaces(Array(5).fill(0));
     setCount(3);
-    setPossibleScores([
-      { key: "Ones", score: 0 },
-      { key: "Twos", score: 0 },
-      { key: "Threes", score: 0 },
-      { key: "Fours", score: 0 },
-      { key: "Fives", score: 0 },
-      { key: "Sixes", score: 0 },
-      { key: "Three", score: 0 },
-      { key: "Four", score: 0 },
-      { key: "HullHouse", score: 0 },
-      { key: "SmallStraight", score: 0 },
-      { key: "LargeStraight", score: 0 },
-      { key: "Chance", score: 0 },
-      { key: "Yatzy", score: 0 }
-    ]);
+    setPossibleScores(createInitialPossibleScores(players));
+    setCurrentPlayer(currentPlayer === players - 1 ? 0 : currentPlayer + 1);
   }
 
   return (
     <div style={{ padding: "2rem" }}>
       <h1>Yatzy</h1>
+      <h2>Player {currentPlayer + 1}'s turn</h2>
 
       <div
         style={{
@@ -96,11 +75,10 @@ function Game({ players }) {
         {scores.map((playerScores, index) => (
           <ScoreBoard
             key={index}
-            upperScores={playerScores.slice(0, 6)}
-            lowerScores={playerScores.slice(6)}
-            upperPossibleScores={possibleScores.slice(0, 6)}
-            lowerPossibleScores={possibleScores.slice(6)}
+            scores={playerScores}
+            possibleScores={possibleScores[index]}
             handleSelect={handleSelect}
+            isActive={index === currentPlayer}
           />
         ))}
       </div>
