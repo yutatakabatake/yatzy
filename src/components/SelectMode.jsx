@@ -1,6 +1,11 @@
+import { Link } from "react-router-dom"
+
 function SelectMode() {
     return (
-        <div>SelectMode</div>
+        <>
+            <Link to={"/one"}>SOLO</Link>
+            <Link to={"/two"}>VS</Link>
+        </>
     )
 }
 
