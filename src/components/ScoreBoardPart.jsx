@@ -1,4 +1,4 @@
-function UpperScoreBoard({ scores, possibleScores, handleSelect }) {
+function ScoreBoardPart({ scores, possibleScores, handleSelect, isActive }) {
     const item = scores.map((row, i) => {
         const isDecide = row.score !== null;
         let score;
@@ -13,7 +13,7 @@ function UpperScoreBoard({ scores, possibleScores, handleSelect }) {
                 <td>
                     <button type="button"
                         onClick={() => handleSelect(row.key)}
-                        disabled={isDecide}
+                        disabled={isDecide || !isActive}
                     >
                         Select
                     </button>
@@ -31,4 +31,4 @@ function UpperScoreBoard({ scores, possibleScores, handleSelect }) {
     return item;
 }
 
-export default UpperScoreBoard
+export default ScoreBoardPart
