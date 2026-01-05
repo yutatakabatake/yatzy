@@ -42,10 +42,14 @@ function Game({ players }) {
   }
 
   function handleSelect(key) {
-    const newScores = scores.map((row, i) => (
-      row.key === key ? { ...row, score: possibleScores[i].score } : row
+    const newScores = scores[currentPlayer].map((row, i) => (
+      row.key === key ? { ...row, score: possibleScores[currentPlayer][i].score } : row
     ));
-    setScores(newScores);
+    setScores(
+      scores.map((playerScores, index) => (
+        index === currentPlayer ? newScores : playerScores
+      ))
+    );
     initRound();
   }
 
