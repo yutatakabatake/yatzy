@@ -2,13 +2,13 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router'
 import './index.css'
-import App from './App.jsx'
-import TwoPlayer from './components/TwoPlayer.jsx'
-import SelectMode from './components/SelectMode.jsx'
+import Home from './page/Home.jsx'
+import OnePlayer from './page/OnePlayer.jsx'
+import TwoPlayer from './page/TwoPlayer.jsx'
 
 const router = createBrowserRouter([
-  { path: "/", Component: SelectMode },
-  { path: "/one", Component: App },
+  { path: "/", Component: Home },
+  { path: "/one", Component: OnePlayer },
   { path: "/two", Component: TwoPlayer }
 ]);
 

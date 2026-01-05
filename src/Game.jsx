@@ -1,11 +1,11 @@
 import { useState } from 'react'
-import './App.css'
+import './Game.css'
 import RollButton from './components/RollButton'
 import Dicearea from './components/Dicearea'
 import ScoreBoard from './components/ScoreBoard'
 import { calcScores } from './logic/calculate'
 
-function App() {
+function Game({ players }) {
   const [isHolds, setIsHolds] = useState(Array(5).fill(false));
   const [faces, setFaces] = useState(Array(5).fill(0));
   const [count, setCount] = useState(3);
@@ -117,4 +117,4 @@ function App() {
   )
 }
 
-export default App
+export default Game
