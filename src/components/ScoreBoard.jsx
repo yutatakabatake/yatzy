@@ -1,6 +1,6 @@
 import ScoreBoardPart from "./ScoreBoardPart";
 
-function ScoreBoard({ scores, possibleScores, handleSelect, isActive }) {
+function ScoreBoard({ scores, possibleScores, handleSelect, isActive, playerNumber }) {
     const upperScores = scores.slice(0, 6);
     const lowerScores = scores.slice(6);
     const upperPossibleScores = possibleScores.slice(0, 6);
@@ -20,6 +20,9 @@ function ScoreBoard({ scores, possibleScores, handleSelect, isActive }) {
 
     return (
         <table border="1" width="100%" style={{ marginTop: "1rem" }}>
+            <caption>
+                Player {playerNumber + 1}
+            </caption>
             <tbody>
                 <ScoreBoardPart scores={upperScores} possibleScores={upperPossibleScores} handleSelect={handleSelect} isActive={isActive} />
                 <tr key="sum">

@@ -83,6 +83,7 @@ function Game({ players }) {
             possibleScores={possibleScores[index]}
             handleSelect={handleSelect}
             isActive={index === currentPlayer}
+            playerNumber={index}
           />
         ))}
       </div>
