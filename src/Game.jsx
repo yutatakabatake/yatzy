@@ -63,7 +63,7 @@ function Game({ players }) {
 
   return (
     <div style={{ padding: "2rem" }}>
-      <h1>Yatzy</h1>
+      <h1>YATZY</h1>
       <h2>Player {currentPlayer + 1}'s turn</h2>
 
       <div
