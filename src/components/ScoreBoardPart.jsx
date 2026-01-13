@@ -21,7 +21,7 @@ function ScoreBoardPart({ scores, possibleScores, handleSelect, isActive }) {
                 <td>{row.key}</td>
                 <td
                     style={{
-                        color: isDecide ? "white" : "#999"
+                        color: isDecide ? "" : "#999"
                     }}>
                     {score}
                 </td>
