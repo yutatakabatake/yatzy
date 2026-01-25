@@ -1,54 +1,83 @@
-function countDice(faces) {
-    const counts = {}
+type Faces = number[];
+type Counts = {
+    one: number,
+    two: number,
+    three: number,
+    four: number,
+    five: number,
+    six: number
+}
+
+const faceMap: Record<number, keyof Counts> = {
+    1: 'one',
+    2: 'two',
+    3: 'three',
+    4: 'four',
+    5: 'five',
+    6: 'six'
+};
+
+function countDice(faces: Faces): Counts {
+    const counts: Counts = {
+        one: 0,
+        two: 0,
+        three: 0,
+        four: 0,
+        five: 0,
+        six: 0
+    };
     for (const value of faces) {
-        counts[value] = (counts[value] || 0) + 1
+        const key = faceMap[value + 1];
+        if (key) {
+            counts[key] = counts[key] + 1
+        }
     }
     return counts;
 }
 
-function calcOnesScore(counts) {
-    if (counts[0]) {
-        return counts[0];
+function calcOnesScore(counts: Counts) {
+    if (counts['one']) {
+        return counts['one'];
     }
     return 0;
 }
 
-function calcTwosScore(counts) {
-    if (counts[1]) {
-        return counts[1] * 2;
+function calcTwosScore(counts: Counts) {
+    if (counts['two']) {
+        return counts['two'] * 2;
     }
     return 0;
 }
 
-function calcThreesScore(counts) {
-    if (counts[2]) {
-        return counts[2] * 3;
+function calcThreesScore(counts: Counts) {
+    if (counts['three']) {
+        return counts['three'] * 3;
     }
     return 0;
 }
 
-function calcFoursScore(counts) {
-    if (counts[3]) {
-        return counts[3] * 4;
+function calcFoursScore(counts: Counts) {
+    if (counts['four']) {
+        return counts['four'] * 4;
     }
     return 0;
 }
 
-function calcFivesScore(counts) {
-    if (counts[4]) {
-        return counts[4] * 5;
+function calcFivesScore(counts: Counts) {
+    if (counts['five']) {
+        return counts['five'] * 5;
     }
     return 0;
 }
 
-function calcSixesScore(counts) {
-    if (counts[5]) {
-        return counts[5] * 6;
+function calcSixesScore(counts: Counts) {
+    if (counts['six']) {
+        return counts['six'] * 6;
     }
     return 0;
 }
 
-function calcThreeOfKindScore(counts, faces) {
+function calcThreeOfKindScore(counts: Counts, faces: Faces) {
     const hasThreeOrMore = Object.values(counts).some(
         count => count >= 3
     );
@@ -59,7 +88,7 @@ function calcThreeOfKindScore(counts, faces) {
     }
 }
 
-function calcFourOfKindScore(counts, faces) {
+function calcFourOfKindScore(counts: Counts, faces: Faces) {
     const hasFourOrMore = Object.values(counts).some(
         count => count >= 4
     );
@@ -70,7 +99,7 @@ function calcFourOfKindScore(counts, faces) {
     }
 }
 
-function calcFullhouseScore(counts) {
+function calcFullhouseScore(counts: Counts) {
     const [a, b] = Object.values(counts).sort();
     if (a === 2 && b === 3) {
         return 25;
@@ -78,12 +107,13 @@ function calcFullhouseScore(counts) {
     return 0;
 }
 
-function calcSmallStraightScore(counts) {
+function calcSmallStraightScore(counts: Counts) {
     let maxRun = 0
     let currentRun = 0
 
     for (let value = 0; value <= 5; value++) {
-        if (counts[value] >= 1) {
+        const key = faceMap[value];
+        if (counts[key] >= 1) {
             currentRun++
             maxRun = Math.max(maxRun, currentRun)
         } else {
@@ -96,12 +126,13 @@ function calcSmallStraightScore(counts) {
     return 0;
 }
 
-function calcLargeStraightScore(counts) {
+function calcLargeStraightScore(counts: Counts) {
     let maxRun = 0
     let currentRun = 0
 
     for (let value = 0; value <= 5; value++) {
-        if (counts[value] >= 1) {
+        const key = faceMap[value + 1];
+        if (counts[key] >= 1) {
             currentRun++
             maxRun = Math.max(maxRun, currentRun)
         } else {
@@ -114,7 +145,7 @@ function calcLargeStraightScore(counts) {
     return 0;
 }
 
-function calcChanceScore(faces) {
+function calcChanceScore(faces: Faces) {
     const sum = faces.reduce(
         (accumulator, currentValue) => accumulator + currentValue,
         0
@@ -122,7 +153,7 @@ function calcChanceScore(faces) {
     return sum + 5;
 }
 
-function calcYatzy(counts) {
+function calcYatzy(counts: Counts) {
     const isYazty = Object.values(counts).some(count => count === 5);
     if (isYazty) {
         return 50;
@@ -130,7 +161,7 @@ function calcYatzy(counts) {
     return 0;
 }
 
-export function calcScores(faces) {
+export function calcScores(faces: Faces) {
     const counts = countDice(faces);
     const scores = [
         { key: "Ones", score: calcOnesScore(counts) },
