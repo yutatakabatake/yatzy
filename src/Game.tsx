@@ -31,8 +31,10 @@ export type PossibleScoreRow = {
   score: number;
 };
 
+type Props = { players: number }
 
-function Game({ players }: { players: number }) {
+function Game(props: Props) {
+  const { players } = props;
   const [isHolds, setIsHolds] = useState<boolean[]>(Array(5).fill(false));
   const [faces, setFaces] = useState<number[]>(Array(5).fill(0));
   const [count, setCount] = useState<number>(3);
