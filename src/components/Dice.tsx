@@ -1,6 +1,5 @@
 import './Dice.css'
 
-
 const FACES = [
     "src/assets/dice1.png",
     "src/assets/dice2.png",
@@ -10,7 +9,14 @@ const FACES = [
     "src/assets/dice6.png"
 ];
 
-function Dice({ face, isHold, handleClick }) {
+type Props = {
+    face: number;
+    isHold: boolean;
+    handleClick: () => void
+}
+
+function Dice(props: Props) {
+    const { face, isHold, handleClick } = props;
     const src = FACES[face];
     return (
         <div className={`die ${isHold ? "held" : ""}`}

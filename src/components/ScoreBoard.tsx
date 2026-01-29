@@ -1,6 +1,16 @@
+import type { PossibleScoreRow, ScoreKey, ScoreRow } from "../Game";
 import ScoreBoardPart from "./ScoreBoardPart";
 
-function ScoreBoard({ scores, possibleScores, handleSelect, isActive, playerNumber }) {
+type Props = {
+    scores: ScoreRow[];
+    possibleScores: PossibleScoreRow[];
+    handleSelect: (key: ScoreKey) => void
+    isActive: boolean;
+    playerNumber: number
+}
+
+function ScoreBoard(props: Props) {
+    const { scores, possibleScores, handleSelect, isActive, playerNumber } = props;
     const upperScores = scores.slice(0, 6);
     const lowerScores = scores.slice(6);
     const upperPossibleScores = possibleScores.slice(0, 6);
@@ -19,7 +29,7 @@ function ScoreBoard({ scores, possibleScores, handleSelect, isActive, playerNumb
         ) + sum + bonus;
 
     return (
-        <table border="1" width="100%" style={{ marginTop: "1rem" }}>
+        <table border={1} width="100%" style={{ marginTop: "1rem" }}>
             <caption>
                 Player {playerNumber + 1}
             </caption>

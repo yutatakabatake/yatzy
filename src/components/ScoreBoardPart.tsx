@@ -1,4 +1,14 @@
-function ScoreBoardPart({ scores, possibleScores, handleSelect, isActive }) {
+import type { PossibleScoreRow, ScoreKey, ScoreRow } from "../Game"
+
+type Props = {
+    scores: ScoreRow[];
+    possibleScores: PossibleScoreRow[];
+    handleSelect: (key: ScoreKey) => void;
+    isActive: boolean
+}
+
+function ScoreBoardPart(props: Props) {
+    const { scores, possibleScores, handleSelect, isActive } = props;
     const item = scores.map((row, i) => {
         const isDecide = row.score !== null;
         let score;
@@ -21,7 +31,7 @@ function ScoreBoardPart({ scores, possibleScores, handleSelect, isActive }) {
                 <td>{row.key}</td>
                 <td
                     style={{
-                        color: isDecide ? "white" : "#999"
+                        color: isDecide ? "" : "#999"
                     }}>
                     {score}
                 </td>
