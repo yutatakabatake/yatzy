@@ -12,7 +12,7 @@ const router = createBrowserRouter([
   { path: "/two", Component: TwoPlayer }
 ]);
 
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <RouterProvider router={router} />
   </StrictMode>,
