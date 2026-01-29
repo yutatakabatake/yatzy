@@ -1,6 +1,5 @@
-import type { PossibleScoreRow, ScoreKey } from "../Game";
+import type { Faces, PossibleScoreRow, ScoreKey } from "../Game";
 
-type Faces = number[];
 type Counts = {
     one: number,
     two: number,

@@ -20,6 +20,8 @@ export type ScoreKey =
   | "Chance"
   | "Yatzy";
 
+export type Faces = number[];
+
 type ScoreRow = {
   key: ScoreKey;
   score: number | null;
@@ -36,7 +38,7 @@ type Props = { players: number }
 function Game(props: Props) {
   const { players } = props;
   const [isHolds, setIsHolds] = useState<boolean[]>(Array(5).fill(false));
-  const [faces, setFaces] = useState<number[]>(Array(5).fill(0));
+  const [faces, setFaces] = useState<Faces>(Array(5).fill(0));
   const [count, setCount] = useState<number>(3);
   const [currentPlayer, setCurrentPlayer] = useState<number>(0);
   const [scores, setScores] = useState<ScoreRow[][]>(createInitialScores(players));
