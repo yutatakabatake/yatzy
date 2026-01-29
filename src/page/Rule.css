@@ -1,0 +1,84 @@
+.rule-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.8;
+}
+
+.rule-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    /* color: #333; */
+}
+
+.rule-section {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.rule-section:last-child {
+    border-bottom: none;
+}
+
+.rule-section h2 {
+    font-size: 1.5rem;
+    /* color: #333; */
+    margin-bottom: 1rem;
+    border-left: 4px solid #007bff;
+    padding-left: 1rem;
+}
+
+.rule-section h3 {
+    font-size: 1.2rem;
+    /* color: #555; */
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.rule-section p {
+    /* color: #666; */
+    margin-bottom: 1rem;
+}
+
+.rule-section ul,
+.rule-section ol {
+    margin-left: 2rem;
+    /* color: #666; */
+}
+
+.rule-section li {
+    margin-bottom: 0.7rem;
+}
+
+.category-group {
+    /* background-color: #f9f9f9; */
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+}
+
+.category-group ul {
+    margin-left: 1.5rem;
+}
+
+@media (max-width: 600px) {
+    .rule-container {
+        padding: 1rem;
+    }
+
+    .rule-title {
+        font-size: 1.8rem;
+    }
+
+    .rule-section h2 {
+        font-size: 1.2rem;
+    }
+
+    .rule-section h3 {
+        font-size: 1rem;
+    }
+}
