@@ -5,15 +5,42 @@ import Dicearea from './components/Dicearea'
 import ScoreBoard from './components/ScoreBoard'
 import { calcScores } from './logic/calculate'
 
-function Game({ players }) {
-  const [isHolds, setIsHolds] = useState(Array(5).fill(false));
-  const [faces, setFaces] = useState(Array(5).fill(0));
-  const [count, setCount] = useState(3);
-  const [currentPlayer, setCurrentPlayer] = useState(0);
-  const [scores, setScores] = useState(createInitialScores(players));
-  const [possibleScores, setPossibleScores] = useState(createInitialPossibleScores(players));
+export type ScoreKey =
+  | "Ones"
+  | "Twos"
+  | "Threes"
+  | "Fours"
+  | "Fives"
+  | "Sixes"
+  | "Three"
+  | "Four"
+  | "HullHouse"
+  | "SmallStraight"
+  | "LargeStraight"
+  | "Chance"
+  | "Yatzy";
 
-  function handleHold(i) {
+type ScoreRow = {
+  key: ScoreKey;
+  score: number | null;
+};
+
+
+export type PossibleScoreRow = {
+  key: ScoreKey;
+  score: number;
+};
+
+
+function Game({ players }: { players: number }) {
+  const [isHolds, setIsHolds] = useState<boolean[]>(Array(5).fill(false));
+  const [faces, setFaces] = useState<number[]>(Array(5).fill(0));
+  const [count, setCount] = useState<number>(3);
+  const [currentPlayer, setCurrentPlayer] = useState<number>(0);
+  const [scores, setScores] = useState<ScoreRow[][]>(createInitialScores(players));
+  const [possibleScores, setPossibleScores] = useState<PossibleScoreRow[][]>(createInitialPossibleScores(players));
+
+  function handleHold(i: number) {
     const newIsHolds = [...isHolds.slice(0, i), !isHolds[i], ...isHolds.slice(i + 1, isHolds.length)];
     setIsHolds(newIsHolds);
   }
@@ -35,14 +62,14 @@ function Game({ players }) {
 
     const newPossibleScores = calcScores(newFaces);
     setPossibleScores(
-      possibleScores.map((possiblePlayerScores, index) => (
+      possibleScores.map((possiblePlayerScores: PossibleScoreRow[], index: number) => (
         index === currentPlayer ? newPossibleScores : possiblePlayerScores
       ))
     );
   }
 
-  function handleSelect(key) {
-    const newScores = scores[currentPlayer].map((row, i) => (
+  function handleSelect(key: ScoreKey) {
+    const newScores = scores[currentPlayer].map((row: ScoreRow, i: number) => (
       row.key === key ? { ...row, score: possibleScores[currentPlayer][i].score } : row
     ));
     setScores(
@@ -91,7 +118,7 @@ function Game({ players }) {
   )
 }
 
-function createInitialScores(players) {
+function createInitialScores(players: number): ScoreRow[][] {
   return (Array(players).fill([
     { key: "Ones", score: null },
     { key: "Twos", score: null },
@@ -109,7 +136,7 @@ function createInitialScores(players) {
   ]));
 }
 
-function createInitialPossibleScores(players) {
+function createInitialPossibleScores(players: number): PossibleScoreRow[][] {
   return (Array(players).fill([
     { key: "Ones", score: 0 },
     { key: "Twos", score: 0 },

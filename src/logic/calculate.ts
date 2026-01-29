@@ -1,3 +1,5 @@
+import type { PossibleScoreRow, ScoreKey } from "../Game";
+
 type Faces = number[];
 type Counts = {
     one: number,
@@ -7,6 +9,22 @@ type Counts = {
     five: number,
     six: number
 }
+
+const keys: ScoreKey[] = [
+    "Ones",
+    "Twos",
+    "Threes",
+    "Fours",
+    "Fives",
+    "Sixes",
+    "Three",
+    "Four",
+    "HullHouse",
+    "SmallStraight",
+    "LargeStraight",
+    "Chance",
+    "Yatzy"
+];
 
 const faceMap: Record<number, keyof Counts> = {
     1: 'one',
@@ -161,22 +179,22 @@ function calcYatzy(counts: Counts) {
     return 0;
 }
 
-export function calcScores(faces: Faces) {
+export function calcScores(faces: Faces): PossibleScoreRow[] {
     const counts = countDice(faces);
     const scores = [
-        { key: "Ones", score: calcOnesScore(counts) },
-        { key: "Twos", score: calcTwosScore(counts) },
-        { key: "Threes", score: calcThreesScore(counts) },
-        { key: "Fours", score: calcFoursScore(counts) },
-        { key: "Fives", score: calcFivesScore(counts) },
-        { key: "Sixes", score: calcSixesScore(counts) },
-        { key: "Three", score: calcThreeOfKindScore(counts, faces) },
-        { key: "Four", score: calcFourOfKindScore(counts, faces) },
-        { key: "HullHouse", score: calcFullhouseScore(counts) },
-        { key: "SmallStraight", score: calcSmallStraightScore(counts) },
-        { key: "LargeStraight", score: calcLargeStraightScore(counts) },
-        { key: "Chance", score: calcChanceScore(faces) },
-        { key: "Yatzy", score: calcYatzy(counts) }
+        { key: keys[0], score: calcOnesScore(counts) },
+        { key: keys[1], score: calcTwosScore(counts) },
+        { key: keys[2], score: calcThreesScore(counts) },
+        { key: keys[3], score: calcFoursScore(counts) },
+        { key: keys[4], score: calcFivesScore(counts) },
+        { key: keys[5], score: calcSixesScore(counts) },
+        { key: keys[6], score: calcThreeOfKindScore(counts, faces) },
+        { key: keys[7], score: calcFourOfKindScore(counts, faces) },
+        { key: keys[8], score: calcFullhouseScore(counts) },
+        { key: keys[9], score: calcSmallStraightScore(counts) },
+        { key: keys[10], score: calcLargeStraightScore(counts) },
+        { key: keys[11], score: calcChanceScore(faces) },
+        { key: keys[12], score: calcYatzy(counts) }
     ];
     return scores;
 }
