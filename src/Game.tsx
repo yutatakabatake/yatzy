@@ -51,7 +51,7 @@ function Game({ players }: { players: number }) {
     }
     const newFaces = faces.map((n, i) => {
       if (isHolds[i]) {
-        return n
+        return n;
       }
       const randNum = Math.random() * 6;
       const intNum = Math.floor(randNum);
