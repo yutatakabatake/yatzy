@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './Game.css'
 import RollButton from './components/RollButton'
-import Dicearea from './components/Dicearea'
+import Dicearea from './components/DiceArea'
 import ScoreBoard from './components/ScoreBoard'
 import { calcScores } from './logic/calculate'
 
