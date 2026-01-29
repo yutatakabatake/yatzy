@@ -22,7 +22,7 @@ export type ScoreKey =
 
 export type Faces = number[];
 
-type ScoreRow = {
+export type ScoreRow = {
   key: ScoreKey;
   score: number | null;
 };
