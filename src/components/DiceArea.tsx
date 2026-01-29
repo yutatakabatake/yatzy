@@ -1,7 +1,16 @@
+import type { Faces } from '../Game';
 import Dice from './Dice'
 import './DiceArea.css'
 
-function Dicearea({ faces, isHolds, handleHold, isInit }) {
+type Props = {
+    faces: Faces;
+    isHolds: boolean[];
+    handleHold: (i: number) => void;
+    isInit: boolean
+}
+
+function Dicearea(props: Props) {
+    const { faces, isHolds, handleHold, isInit } = props;
     if (isInit) {
         return <div className='dice'>ROLL!</div>
     }
