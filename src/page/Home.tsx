@@ -15,6 +15,9 @@ function SelectMode() {
                     VS
                 </Link>
             </div>
+            <Link to="/rule" className="mode-button">
+                RULE
+            </Link>
         </div>
     )
 }
