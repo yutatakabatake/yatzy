@@ -117,8 +117,8 @@ function calcFourOfKindScore(counts: Counts, faces: Faces) {
 }
 
 function calcFullhouseScore(counts: Counts) {
-    const [a, b] = Object.values(counts).sort();
-    if (a === 2 && b === 3) {
+    const [a, b] = Object.values(counts).sort((a, b) => (a > b ? -1 : 1));
+    if (a === 3 && b === 2) {
         return 25;
     }
     return 0;

@@ -70,3 +70,38 @@ describe('score of [1,2,3,4,4]', () => {
         expect(scores.find(s => s.key === 'HullHouse')?.score).toBe(0);  // ペア無し
     });
 });
+
+describe('score of [4,2,4,4,2]', () => {
+    const faces = [3, 1, 3, 3, 1];
+    const scores = calcScores(faces);
+    test('Straight', () => {
+
+        // スコアボードから各カテゴリのスコアを取得
+        const smallStraight = scores.find(s => s.key === 'SmallStraight')?.score;
+        const largeStraight = scores.find(s => s.key === 'LargeStraight')?.score;
+
+        expect(smallStraight).toBe(0); // Small Straight: 4連続以上で30点
+        expect(largeStraight).toBe(0);
+    });
+
+    test('Individual Numbers', () => {
+        expect(scores.find(s => s.key === 'Ones')?.score).toBe(0);
+        expect(scores.find(s => s.key === 'Twos')?.score).toBe(4);
+        expect(scores.find(s => s.key === 'Threes')?.score).toBe(0);
+        expect(scores.find(s => s.key === 'Fours')?.score).toBe(12);
+        expect(scores.find(s => s.key === 'Fives')?.score).toBe(0);
+        expect(scores.find(s => s.key === 'Sixes')?.score).toBe(0);
+    });
+
+    test('Chance', () => {
+        const chance = scores.find(s => s.key === 'Chance')?.score;
+        expect(chance).toBe(16);
+    });
+
+    test('Yatzy and other patterns', () => {
+        expect(scores.find(s => s.key === 'Yatzy')?.score).toBe(0);      // 5つ揃っていない
+        expect(scores.find(s => s.key === 'Three')?.score).toBe(16);      // 3連続ペア無し
+        expect(scores.find(s => s.key === 'Four')?.score).toBe(0);       // 4連続ペア無し
+        expect(scores.find(s => s.key === 'HullHouse')?.score).toBe(25);
+    });
+});
