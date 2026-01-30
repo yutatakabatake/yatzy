@@ -1,12 +1,18 @@
 import './Dice.css'
+import dice1 from "/public/dice1.png";
+import dice2 from "/public/dice2.png";
+import dice3 from "/public/dice3.png";
+import dice4 from "/public/dice4.png";
+import dice5 from "/public/dice5.png";
+import dice6 from "/public/dice6.png";
 
 const FACES = [
-    "public/dice1.png",
-    "public/dice2.png",
-    "public/dice3.png",
-    "public/dice4.png",
-    "public/dice5.png",
-    "public/dice6.png"
+    dice1,
+    dice2,
+    dice3,
+    dice4,
+    dice5,
+    dice6
 ];
 
 type Props = {
