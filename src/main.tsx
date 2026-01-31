@@ -9,8 +9,8 @@ import Rule from './page/Rule.js'
 
 const router = createBrowserRouter([
   { path: "/", Component: Home },
-  { path: "/one", Component: OnePlayer },
-  { path: "/two", Component: TwoPlayer },
+  { path: "/solo", Component: OnePlayer },
+  { path: "/vs", Component: TwoPlayer },
   { path: "/rule", Component: Rule }
 ]);
 
